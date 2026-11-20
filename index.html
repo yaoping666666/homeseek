@@ -516,5 +516,18 @@
     });
   })();
 </script>
+<script>
+(function () {
+  try {
+    var y = sessionStorage.getItem('hs-list-scroll');
+    if (y !== null) { sessionStorage.removeItem('hs-list-scroll'); window.scrollTo({ top: Number(y), behavior: 'instant' }); }
+  } catch (e) {}
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[href^="prototype.html"]');
+    if (!link) return;
+    try { sessionStorage.setItem('hs-list-scroll', String(window.scrollY)); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>
